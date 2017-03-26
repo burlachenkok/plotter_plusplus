@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>plotter_values</class>
+ <widget class="QWidget" name="plotter_values">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>877</width>
+    <height>483</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="lblPerGraph">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tblPoints">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>x</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>y</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="btnAppendPoint">
+         <property name="text">
+          <string>Add point</string>
+         </property>
+         <property name="icon">
+          <iconset resource="plotter_resource.qrc">
+           <normaloff>:/icons/resources/plus_blue.png</normaloff>:/icons/resources/plus_blue.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDeleteAllPoints">
+         <property name="text">
+          <string>Delete all points</string>
+         </property>
+         <property name="icon">
+          <iconset resource="plotter_resource.qrc">
+           <normaloff>:/icons/resources/minus_blue.png</normaloff>:/icons/resources/minus_blue.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="lblGraphs">
+       <property name="text">
+        <string>Available graphs</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tblGraphs">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Color</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Width</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Dot line</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Visible</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnRefreshView">
+       <property name="text">
+        <string>Force Refresh</string>
+       </property>
+       <property name="icon">
+        <iconset resource="plotter_resource.qrc">
+         <normaloff>:/icons/resources/refresh.png</normaloff>:/icons/resources/refresh.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btnAppendGraph">
+         <property name="text">
+          <string>Add graph before</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDeleteGraph">
+         <property name="text">
+          <string>Delete graph</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnIverseGraphVisible">
+         <property name="text">
+          <string>Inverse graph visible</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDeleteAllGraphs">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Delete All graphs</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="plotter_resource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>btnAppendGraph</sender>
+   <signal>clicked()</signal>
+   <receiver>plotter_values</receiver>
+   <slot>slotAppendNewGraph()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>524</x>
+     <y>463</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>693</x>
+     <y>409</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnDeleteGraph</sender>
+   <signal>clicked()</signal>
+   <receiver>plotter_values</receiver>
+   <slot>slotRemoveCurrentGraph()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>756</x>
+     <y>460</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>692</x>
+     <y>389</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAppendPoint</sender>
+   <signal>clicked()</signal>
+   <receiver>plotter_values</receiver>
+   <slot>slotAppendPointForCurrentGraph()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>466</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>409</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnDeleteAllPoints</sender>
+   <signal>clicked()</signal>
+   <receiver>plotter_values</receiver>
+   <slot>slotRemoveAllPointForCurrentGraph()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>381</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotAppendNewGraph()</slot>
+  <slot>slotRemoveCurrentGraph()</slot>
+  <slot>slotAppendPointForCurrentGraph()</slot>
+  <slot>slotRemovePointForCurrentGraph()</slot>
+  <slot>slotRemoveAllPointForCurrentGraph()</slot>
+ </slots>
+</ui>

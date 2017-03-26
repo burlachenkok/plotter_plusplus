@@ -1,0 +1,7 @@
+# exclude build directories
+build-*/
+
+# exclude temporary files
+*.pro.user
+*.pyc
+*.chw

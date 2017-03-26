@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>resources/logo_with_tiger.png</file>
+        <file>resources/setting.png</file>
+        <file>resources/about.png</file>
+        <file>resources/exit.png</file>
+        <file>resources/save.png</file>
+        <file>resources/open.png</file>
+        <file>resources/save_as.png</file>
+        <file>resources/app_icon.png</file>
+        <file>resources/minus_blue.png</file>
+        <file>resources/plus_blue.png</file>
+        <file>resources/solid-down.png</file>
+        <file>resources/solid-left.png</file>
+        <file>resources/solid-right.png</file>
+        <file>resources/solid-up.png</file>
+        <file>resources/refresh.png</file>
+    </qresource>
+</RCC>

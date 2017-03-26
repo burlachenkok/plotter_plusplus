@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>plotter_graph</class>
+ <widget class="QWidget" name="plotter_graph">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>561</width>
+    <height>478</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="gbxGraphs">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="loForPlots">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="lblCurPoint">
+       <property name="text">
+        <string>Current point</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edtCurPoint">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblGraphicName">
+       <property name="text">
+        <string>Graphic name </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edtGraphicName">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Zooming</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btnZoomIn">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="plotter_resource.qrc">
+          <normaloff>:/icons/resources/plus_blue.png</normaloff>:/icons/resources/plus_blue.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnZoomOut">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="plotter_resource.qrc">
+          <normaloff>:/icons/resources/minus_blue.png</normaloff>:/icons/resources/minus_blue.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnZoomReset">
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>130</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Navigating and draw configuration</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <layout class="QGridLayout" name="gridButtons">
+        <item row="1" column="2">
+         <widget class="QPushButton" name="btnGraphicRight">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="plotter_resource.qrc">
+            <normaloff>:/icons/resources/solid-right.png</normaloff>:/icons/resources/solid-right.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="btnGraphicDown">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="plotter_resource.qrc">
+            <normaloff>:/icons/resources/solid-down.png</normaloff>:/icons/resources/solid-down.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="lblDownRight">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="lblUpRight">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="btnGraphicUp">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="plotter_resource.qrc">
+            <normaloff>:/icons/resources/solid-up.png</normaloff>:/icons/resources/solid-up.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lblDownLeft">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="btnGraphicLeft">
+          <property name="minimumSize">
+           <size>
+            <width>1</width>
+            <height>2</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="plotter_resource.qrc">
+            <normaloff>:/icons/resources/solid-left.png</normaloff>:/icons/resources/solid-left.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="lblUpLeft">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="gbxPlotOptions">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="lblStepForScrollPlot">
+             <property name="text">
+              <string>Step for scroll plot</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spbStepForScrollPlot">
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="value">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="lblChangeUpdateRate">
+             <property name="text">
+              <string>Update frequency</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spbChangeUpdateRate">
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="singleStep">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbxPlotGraphsAsSpline">
+           <property name="text">
+            <string>Show all plots as spline</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbxSupportPositioning">
+           <property name="text">
+            <string>Track  Position</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="lblTheme">
+             <property name="text">
+              <string>Theme</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbxChartTheme">
+             <item>
+              <property name="text">
+               <string>Light</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Blue Cerulean</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dark</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Brown Sand</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Blue Ncs</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>High Contrast</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Blue Icy</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Theme Qt</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="plotter_resource.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <signal>graphsHaveBeenUpdated()</signal>
+  <slot>slotRedrawGraphs()</slot>
+ </slots>
+</ui>
