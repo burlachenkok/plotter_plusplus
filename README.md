@@ -1,11 +1,14 @@
 # Plotter++
 
-This is an advanced plotter tool. It have been written in C++ and it use Qt Framework 5.7.* as only one external library.
-Plotter++ is a program to assist debugging and development process for people who want to have an ability to display and operate the following things:
+This is an advanced plotter tool which receives commands over the network TCP connection. 
+Goal of this program is to assist debugging and development process.
+It have been written in C++ and it use Qt Framework 5.7.* as only one external library.
+
+It allow to do the following things:
 
 [1] Plot several curves consist of points (x,y) in one plot
 
-[2] 2d images
+[2] Display received bitmap of 2d images and store history of the images
 
 [3] Take function ranges and function domains from [2] and view it as 3d point in 3d plot
 
