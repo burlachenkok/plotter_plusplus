@@ -14,6 +14,10 @@ It allow to do the following things:
 
 [4] Text console
 
+# Actual Build
+
+For Windows: https://github.com/burlachenkok/plotter_plusplus/builds/release_plotter_plus_plus_21APR17.zip 
+
 # Features
 
 1. It support text-based ASCII protocol and support the following commands
