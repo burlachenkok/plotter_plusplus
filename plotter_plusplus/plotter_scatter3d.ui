@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1034</width>
-    <height>894</height>
+    <height>827</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,7 +47,20 @@
       <item>
        <widget class="QLabel" name="lblHint">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;1. Use scroll to zoom &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;2. Use mouse with holding left button to orientate camera&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;1. Use scroll to zoom, use mouse with holding right button to orientate camera.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="blbFormatOfPoint">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>2. Click on point to display coordinates in format [XYZ]</string>
         </property>
        </widget>
       </item>
@@ -112,6 +125,9 @@
         </item>
         <item>
          <widget class="QComboBox" name="cbxPrimitives">
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
           <item>
            <property name="text">
             <string>Sphere</string>
@@ -137,6 +153,49 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="lblPointSize">
+          <property name="text">
+           <string>Point size</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="spPointSize">
+          <property name="minimum">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.050000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.800000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="sliderPointSize">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="value">
+           <number>80</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="tickInterval">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="lblAxeNameX">
@@ -152,10 +211,6 @@
           </property>
          </widget>
         </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="lblAxeNameY">
           <property name="text">
@@ -170,10 +225,6 @@
           </property>
          </widget>
         </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QLabel" name="lblAxeNameZ">
           <property name="text">
@@ -187,67 +238,6 @@
            <string>Z</string>
           </property>
          </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_7">
-        <item>
-         <widget class="QLabel" name="lblPointSize">
-          <property name="text">
-           <string>Point size</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDoubleSpinBox" name="spPointSize">
-          <property name="minimum">
-           <double>0.010000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.050000000000000</double>
-          </property>
-          <property name="value">
-           <double>0.800000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_13">
-        <item>
-         <widget class="QPushButton" name="btnPointColor">
-          <property name="text">
-           <string>Points color</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -366,19 +356,9 @@
             </layout>
            </item>
            <item>
-            <widget class="QCheckBox" name="cbxShowGrid">
+            <widget class="QCheckBox" name="cbxShowGridAndBackGround">
              <property name="text">
-              <string>Show grid</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cbxShowBackground">
-             <property name="text">
-              <string>Show background</string>
+              <string>Show grid and background</string>
              </property>
              <property name="checked">
               <bool>true</bool>
@@ -429,6 +409,12 @@
       </item>
       <item>
        <widget class="QGroupBox" name="gbxView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -555,6 +541,12 @@
       </item>
       <item>
        <widget class="QGroupBox" name="gbxPointActions">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -567,6 +559,12 @@
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
           <widget class="QPushButton" name="btnRefreshViews">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
            <property name="text">
             <string>Force Refresh views and unselect all</string>
            </property>
@@ -578,8 +576,40 @@
          </item>
          <item>
           <widget class="QPushButton" name="btnUpdateView">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
            <property name="text">
             <string>Update view</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnCyclicAxisChange">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Cyclic Axes Change</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnPointColor">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Change Points Color</string>
            </property>
           </widget>
          </item>
@@ -587,17 +617,39 @@
        </widget>
       </item>
       <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
+       <widget class="QGroupBox" name="gbxStats">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="sizeHint" stdset="0">
+        <property name="minimumSize">
          <size>
-          <width>20</width>
-          <height>40</height>
+          <width>0</width>
+          <height>0</height>
          </size>
         </property>
-       </spacer>
+        <property name="title">
+         <string>Stat</string>
+        </property>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="lblDisplayedPoints">
+           <property name="text">
+            <string>Displayed points</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="edtDisplayedPoints">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </widget>

@@ -10,7 +10,7 @@ It allow to do the following things:
 
 [2] Display received bitmap of 2d images and store history of the images
 
-[3] Take function ranges and function domains from [2] and view it as 3d point in 3d plot
+[3] Select dom(f_i), im(f_i) from [2] and view it as 3d point in 3d plot
 
 [4] Text console
 

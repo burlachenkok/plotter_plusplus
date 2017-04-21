@@ -334,6 +334,7 @@ void plotter_values::on_btnIverseGraphVisible_clicked()
     for (size_t i = 0; i < ctx.graphics.size(); ++i)
         ctx.graphics[i].visible = !ctx.graphics[i].visible;
 
+    emit signalRedrawGraphs(true, true);
     slotRedrawGraphs(true, true);
 }
 
@@ -341,5 +342,7 @@ void plotter_values::on_btnDeleteAllGraphs_clicked()
 {
     GraphsContext& ctx = graphContext();
     ctx.graphics.clear();
+
+    emit signalRedrawGraphs(true, true);
     slotRedrawGraphs(true, true);
 }

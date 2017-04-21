@@ -10,7 +10,8 @@ plotter_scatter3d::plotter_scatter3d(QWidget *parent) :
     pointsColor(Qt::red),
     timerId(0),
     changePoints(false),
-    changePlots(false)
+    changePlots(false),
+    xyzAxisShifting(0)
 {
     ui->setupUi(this);
 
@@ -56,9 +57,51 @@ void plotter_scatter3d::addSeries(double* x, double* y, double* z, size_t numPoi
     for (size_t i = 0; i < numPoints; ++i)
     {
         QVector3D appendPoint(0.0, 0.0, 0.0);
-        if (x != nullptr) appendPoint.setX(x[i]);
-        if (y != nullptr) appendPoint.setY(y[i]);
-        if (z != nullptr) appendPoint.setZ(z[i]);
+        if (x != nullptr)
+        {
+            switch(xyzAxisShifting)
+            {
+            case 0: // xyz
+                appendPoint.setX(x[i]);
+                break;
+            case 1: // zxy
+                appendPoint.setZ(x[i]);
+                break;
+            case 2: // yzx
+                appendPoint.setY(x[i]);
+                break;
+            }
+        }
+        if (y != nullptr)
+        {
+            switch(xyzAxisShifting)
+            {
+            case 0: // xyz
+                appendPoint.setY(y[i]);
+                break;
+            case 1: // zxy
+                appendPoint.setX(y[i]);
+                break;
+            case 2: // yzx
+                appendPoint.setZ(y[i]);
+                break;
+            }
+        }
+        if (z != nullptr)
+        {
+            switch(xyzAxisShifting)
+            {
+            case 0: // xyz
+                appendPoint.setZ(z[i]);
+                break;
+            case 1: // zxy
+                appendPoint.setY(z[i]);
+                break;
+            case 2: // yzx
+                appendPoint.setX(z[i]);
+                break;
+            }
+        }
 
         data << appendPoint;
     }
@@ -88,6 +131,16 @@ void plotter_scatter3d::addSeries(double* x, double* y, double* z, size_t numPoi
     }
 
     graph->addSeries(series);
+
+    updateStat();
+}
+
+void plotter_scatter3d::updateStat()
+{
+    int itemCounts = 0;
+    for (int i = 0; i < graph->seriesList().size(); ++i)
+        itemCounts += graph->seriesList().at(i)->dataProxy()->itemCount();
+    ui->edtDisplayedPoints->setText(QString::number(itemCounts));
 }
 
 void plotter_scatter3d::removeSeries()
@@ -261,17 +314,6 @@ void plotter_scatter3d::on_cbxShadowQuality_activated(int quality)
     graph->setShadowQuality(sq);
 }
 
-void plotter_scatter3d::on_cbxShowGrid_clicked()
-{
-    graph->activeTheme()->setGridEnabled(ui->cbxShowGrid->isChecked());
-}
-
-void plotter_scatter3d::on_cbxShowBackground_clicked()
-{
-    graph->activeTheme()->setLabelBackgroundEnabled(ui->cbxShowBackground->isChecked());
-    graph->activeTheme()->setBackgroundEnabled(ui->cbxShowBackground->isChecked());
-}
-
 void plotter_scatter3d::on_btnCameraRest_clicked()
 {
     Q3DCamera::CameraPreset preset = Q3DCamera::CameraPresetFront;
@@ -296,17 +338,50 @@ void plotter_scatter3d::on_btnCameraRest_clicked()
 
 void plotter_scatter3d::on_edtXaxeName_textChanged(const QString &/*arg1*/)
 {
-    graph->axisX()->setTitle(ui->edtXaxeName->text());
+    switch (xyzAxisShifting)
+    {
+    case 0: // xyz
+        graph->axisX()->setTitle(ui->edtXaxeName->text());
+        break;
+    case 1: // zxy
+        graph->axisZ()->setTitle(ui->edtXaxeName->text());
+        break;
+    case 2: // yzx
+        graph->axisY()->setTitle(ui->edtXaxeName->text());
+        break;
+    }
 }
 
 void plotter_scatter3d::on_edtYaxeName_textChanged(const QString &/*arg1*/)
 {
-    graph->axisY()->setTitle(ui->edtYaxeName->text());
+    switch (xyzAxisShifting)
+    {
+    case 0: // xyz
+        graph->axisY()->setTitle(ui->edtYaxeName->text());
+        break;
+    case 1: // zxy
+        graph->axisX()->setTitle(ui->edtYaxeName->text());
+        break;
+    case 2: // yzx
+        graph->axisZ()->setTitle(ui->edtYaxeName->text());
+        break;
+    }
 }
 
 void plotter_scatter3d::on_edtZaxeName_textChanged(const QString &/*arg1*/)
 {
-    graph->axisZ()->setTitle(ui->edtZaxeName->text());
+    switch (xyzAxisShifting)
+    {
+    case 0: // xyz
+        graph->axisZ()->setTitle(ui->edtZaxeName->text());
+        break;
+    case 1: // zxy
+        graph->axisY()->setTitle(ui->edtZaxeName->text());
+        break;
+    case 2: // yzx
+        graph->axisX()->setTitle(ui->edtZaxeName->text());
+        break;
+    }
 }
 
 void plotter_scatter3d::on_zoomIn_clicked()
@@ -343,6 +418,7 @@ void plotter_scatter3d::on_tblZview_cellClicked(int /*row*/, int /*column*/)
 
 void plotter_scatter3d::on_spPointSize_valueChanged(double /*arg1*/)
 {
+    ui->sliderPointSize->setValue(ui->spPointSize->value() * 100);
     slotRedrawGraphs(true, false);
 }
 
@@ -391,4 +467,37 @@ void plotter_scatter3d::on_btnUpdateView_clicked()
 void plotter_scatter3d::on_cbxUpdateViewForPointCloud_clicked()
 {
     ui->spbChangeUpdateRate->setEnabled(ui->cbxUpdateViewForPointCloud->isChecked());
+}
+
+void plotter_scatter3d::on_btnCyclicAxisChange_clicked()
+{
+    xyzAxisShifting = (xyzAxisShifting + 1) % 3;
+    on_edtXaxeName_textChanged("");
+    on_edtYaxeName_textChanged("");
+    on_edtZaxeName_textChanged("");
+    slotRedrawGraphs(true, false);
+    switch (xyzAxisShifting)
+    {
+    case 0:
+        ui->blbFormatOfPoint->setText("2. Click on point to display coordinates in format [XYZ]");
+        break;
+    case 1:
+        ui->blbFormatOfPoint->setText("2. Click on point to display coordinates in format [YZX]");
+        break;
+    case 2:
+        ui->blbFormatOfPoint->setText("2. Click on point to display coordinates in format [ZXY]");
+        break;
+    }
+}
+
+void plotter_scatter3d::on_sliderPointSize_actionTriggered(int /*action*/)
+{
+    ui->spPointSize->setValue(ui->sliderPointSize->value() / 100.0);
+}
+
+void plotter_scatter3d::on_cbxShowGridAndBackGround_clicked()
+{
+    graph->activeTheme()->setGridEnabled(ui->cbxShowGridAndBackGround->isChecked());
+    graph->activeTheme()->setLabelBackgroundEnabled(ui->cbxShowGridAndBackGround->isChecked());
+    graph->activeTheme()->setBackgroundEnabled(ui->cbxShowGridAndBackGround->isChecked());
 }

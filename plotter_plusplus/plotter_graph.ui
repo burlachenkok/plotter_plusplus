@@ -148,7 +148,7 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>130</height>
+       <height>0</height>
       </size>
      </property>
      <property name="title">
@@ -215,8 +215,8 @@
          <widget class="QPushButton" name="btnGraphicLeft">
           <property name="minimumSize">
            <size>
-            <width>1</width>
-            <height>2</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="text">

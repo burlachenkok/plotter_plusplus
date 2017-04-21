@@ -31,10 +31,6 @@ public slots:
 private slots:
     void on_cbxShadowQuality_activated(int quality);
 
-    void on_cbxShowGrid_clicked();
-
-    void on_cbxShowBackground_clicked();
-
     void on_btnCameraRest_clicked();
 
     void on_edtXaxeName_textChanged(const QString &arg1);
@@ -65,7 +61,14 @@ private slots:
 
     void on_cbxUpdateViewForPointCloud_clicked();
 
+    void on_btnCyclicAxisChange_clicked();
+
+    void on_sliderPointSize_actionTriggered(int action);
+
+    void on_cbxShowGridAndBackGround_clicked();
+
 protected:
+    void updateStat();
 
     void timerEvent(QTimerEvent* event) override;
 
@@ -77,7 +80,7 @@ private:
     int timerId;
     bool changePoints;
     bool changePlots;
-
+    int xyzAxisShifting;
 };
 
 #endif // PLOTTER_SCATTER3D_H
